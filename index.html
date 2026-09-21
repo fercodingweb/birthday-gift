@@ -1766,7 +1766,7 @@
         const full = paras.map(p => p.textContent);
         paras.forEach(p => { p.textContent = ''; p.classList.remove('typing'); });
         const total = full.reduce((a, s) => a + s.length, 0);
-        const delay = total ? Math.min(24, Math.max(7, 2600 / total)) : 8;
+        const delay = total ? Math.min(42, Math.max(16, 6000 / total)) : 20;
         let pi = 0, ci = 0;
         (function step() {
           if (pi >= paras.length) return;
