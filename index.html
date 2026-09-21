@@ -340,6 +340,31 @@
       margin-bottom: .9em
     }
 
+    .panel p.typing::after,
+    .card p.typing::after {
+      content: '';
+      display: inline-block;
+      width: .09em;
+      height: .95em;
+      margin-left: .06em;
+      background: currentColor;
+      vertical-align: -.12em;
+      animation: caret .8s steps(1) infinite
+    }
+
+    @keyframes caret {
+
+      0%,
+      49% {
+        opacity: 1
+      }
+
+      50%,
+      100% {
+        opacity: 0
+      }
+    }
+
     /* ---------- 1. intro ---------- */
     .hero {
       display: flex;
@@ -1736,6 +1761,34 @@
         if (document.hidden) bgm.pause(); else if (!muted) bgm.play().catch(() => { });
       });
 
+      /* ---------- typewriter effect for every card's text ---------- */
+      function typewrite(paras) {
+        const full = paras.map(p => p.textContent);
+        paras.forEach(p => { p.textContent = ''; p.classList.remove('typing'); });
+        const total = full.reduce((a, s) => a + s.length, 0);
+        const delay = total ? Math.min(24, Math.max(7, 2600 / total)) : 8;
+        let pi = 0, ci = 0;
+        (function step() {
+          if (pi >= paras.length) return;
+          paras[pi].classList.add('typing');
+          const text = full[pi];
+          if (ci < text.length) {
+            ci++;
+            paras[pi].textContent = text.slice(0, ci);
+            setTimeout(step, delay);
+          } else {
+            paras[pi].classList.remove('typing');
+            pi++; ci = 0;
+            setTimeout(step, delay * 5);
+          }
+        })();
+      }
+      function startTyping(scene) {
+        if (reduce) return;
+        scene.querySelectorAll('.panel .txt').forEach(txt => typewrite([...txt.querySelectorAll('p')]));
+        scene.querySelectorAll('.card p').forEach(p => typewrite([p]));
+      }
+
       /* ---------- transitions: iris reveal with a maroon leading ring ---------- */
       function go(n, originEl) {
         if (busy || n === cur) return;
@@ -1750,6 +1803,7 @@
         to.classList.add('active', 'play');
         to.style.zIndex = 60;
         to.querySelectorAll('.scroll,.panel').forEach(e => e.scrollTop = 0);
+        startTyping(to);
 
         const finish = () => {
           from.classList.remove('active', 'play');
