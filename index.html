@@ -209,7 +209,7 @@
 
     /* ---------- shared pieces ---------- */
     .ttl {
-      font-family: var(--serif);
+      font-family: var(--text);
       font-weight: 400;
       color: var(--ink);
       line-height: 1.1;
@@ -225,7 +225,8 @@
     }
 
     .btn {
-      font-family: var(--serif);
+      font-family: var(--text);
+      font-style: italic;
       font-weight: 500;
       font-size: clamp(13px, 1.45vw, 17px);
       background: var(--wine);
@@ -1150,8 +1151,13 @@
   justify-content: center;
   padding: 14px 14px 0;
   z-index: 6
-}
-
+  }
+  /* .s4 .head { 
+  position: static;
+  display: flex;
+  justify-content: center;
+  padding: 20px 14px
+  } */
       .split .r {
         padding-bottom: 72px
       }
@@ -1177,7 +1183,7 @@
       }
 
       .polaroid {
-        width: min(34vw, calc(var(--vh, 1vh)*18));
+        width: min(43vw, calc(var(--vh, 1vh)*23));
         margin-top: 36px
       }
 
@@ -1462,9 +1468,8 @@
           </svg>
           <h1><span class="sw">B</span>irthday</h1>
         </div>
-        <p class="name" data-in style="--i:2">Savana Valerant</p>
+        <p class="name" data-in style="--i:2">Randy Pratama</p>
       </div>
-      <p class="name" data-in style="--i:2">Savana Valerant</p>
 <button class="btn" data-next style="margin-top:20px">Buka ya &gt;&lt; ✉️</button>
     </div>
     <p class="tag" data-in style="--i:3">"A little digital memory book built with love, just for you."</p>
@@ -1663,8 +1668,8 @@
 
   <!-- ============ 6. I LOVE YOU ============ -->
   <section class="scene s6" id="s5" aria-label="I love you">
-    <div class="topr" data-in style="--i:0"><button class="btn" data-next>Next</button></div>
     <div class="ilstack">
+
       <h2 class="ttl iltitle" data-in style="--i:0"><span class="sw">I</span> <span class="sw">L</span>ove <span
           class="sw">Y</span>ou</h2>
       <div class="hstrip" aria-hidden="true" data-in style="--i:1">
@@ -1703,6 +1708,8 @@
         </div>
       </div>
     </div>
+        <div class="topr" data-in style="--i:4"><button class="btn" data-next>Next</button></div>
+
   </section>
 
   <!-- ============ 7. BUNGA ============ -->
